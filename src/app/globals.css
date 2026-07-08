@@ -1,0 +1,519 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Mobile/compact header: collapse buttons to icon-only by hiding their labels. */
+.hdr-compact .btn-label {
+  display: none;
+}
+
+body {
+  background: #e9ebf0;
+  color: #20222e;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid #20222e;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Signature: the shrug balance beam ---- */
+.beam-shrug {
+  transition: transform 220ms ease;
+  transform: rotate(0deg);
+}
+/* RAW is the left panel, WYSIWYG the right: the beam tilts toward the active side. */
+.beam-shrug.lean-wysiwyg {
+  transform: rotate(4deg);
+}
+.beam-shrug.lean-raw {
+  transform: rotate(-4deg);
+}
+
+.mode-label {
+  opacity: 0.5;
+}
+.mode-label:not([data-active="true"]):hover {
+  opacity: 0.8;
+}
+.mode-label[data-active="true"] {
+  opacity: 1;
+}
+
+/* Highlighter swipe behind the active mode label (amber marker over ink text). */
+.mark-swipe {
+  position: relative;
+  z-index: 0;
+  padding: 0 4px;
+}
+.mark-swipe::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 18%;
+  bottom: 6%;
+  z-index: -1;
+  background: #f6c445;
+  border-radius: 4px 6px 5px 7px;
+  transform: rotate(-1.5deg) scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform 240ms cubic-bezier(0.2, 0.7, 0.3, 1), opacity 160ms ease;
+}
+.mode-label[data-active="true"] .mark-swipe::before {
+  transform: rotate(-1.5deg) scaleX(1);
+  opacity: 1;
+}
+
+/* Footer links: the amber highlighter swipe (same marker as the active mode
+   label), hidden until hover. Text goes dark so it stays legible over the amber
+   in both themes. */
+.link-mark {
+  position: relative;
+  z-index: 0;
+  padding: 0 4px;
+}
+.link-mark::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 18%;
+  bottom: 6%;
+  z-index: -1;
+  background: #f6c445;
+  border-radius: 4px 6px 5px 7px;
+  transform: rotate(-1.5deg) scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform 240ms cubic-bezier(0.2, 0.7, 0.3, 1), opacity 160ms ease;
+}
+.link-mark:hover::before {
+  transform: rotate(-1.5deg) scaleX(1);
+  opacity: 1;
+}
+.link-mark:hover,
+:root[data-theme="dark"] .link-mark:hover {
+  color: #20222e;
+}
+
+/* Footer shrug that waves on hover: while hovered the two frames (right arm up /
+   left arm up) alternate in an infinite loop (~0.3s per frame, 0.6s cycle) for a
+   waving effect; on mouse-out it rests on the default right-arm frame. Both
+   frames are 7 chars, so the absolute overlay causes no layout shift. */
+.shrug-wave{position:relative;display:inline-block}
+.shrug-wave .shrug-l{position:absolute;left:0;top:0}
+.shrug-wave .shrug-r,.shrug-wave .shrug-l{transition:opacity .3s ease}
+.shrug-wave .shrug-r{opacity:1}
+.shrug-wave .shrug-l{opacity:0}
+@keyframes shrug-r{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
+@keyframes shrug-l{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+.shrug-wave:hover .shrug-r{animation:shrug-r .6s ease-in-out infinite}
+.shrug-wave:hover .shrug-l{animation:shrug-l .6s ease-in-out infinite}
+
+/* Toast entrance. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.toast-in {
+  animation: toast-in 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam-shrug,
+  .mark-swipe::before,
+  .link-mark::before {
+    transition: none;
+  }
+  .shrug-wave .shrug-r,
+  .shrug-wave .shrug-l,
+  .shrug-wave:hover .shrug-r,
+  .shrug-wave:hover .shrug-l {
+    transition: none;
+    animation: none;
+  }
+  .toast-in {
+    animation: none;
+  }
+}
+
+/* ---- BlockNote (@blocknote/mantine) harmonized with the palette ----
+   0.51: the --bn-colors-* theme tokens are DEFINED on `.bn-root` (they were on
+   `.bn-container` in 0.25). Layout props still target `.bn-container`; only these
+   color tokens move. Same specificity as BlockNote's own `.bn-root` defaults, so
+   this override wins by load order (globals.css after @blocknote/mantine/style). */
+.bn-root {
+  --bn-colors-editor-text: #20222e;
+  --bn-colors-editor-background: #ffffff;
+  --bn-colors-menu-text: #20222e;
+  --bn-colors-menu-background: #ffffff;
+  --bn-colors-tooltip-text: #20222e;
+  --bn-colors-tooltip-background: #f5f6f8;
+  --bn-colors-hovered-text: #20222e;
+  --bn-colors-hovered-background: #f3f0e6;
+  --bn-colors-selected-text: #20222e;
+  --bn-colors-selected-background: #fbe7a6;
+  --bn-colors-disabled-text: #a0a4ae;
+  --bn-colors-disabled-background: #f5f6f8;
+  --bn-colors-border: #e6e8ee;
+  --bn-colors-side-menu: #c7cbd4;
+  --bn-colors-shadow: rgba(32, 34, 46, 0.12);
+  --bn-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bn-border-radius: 8px;
+}
+
+/* ---- Dark theme (E9) ----
+   ponytail: the token colors live as hardcoded hex in tailwind.config.ts, which
+   is outside this chunk's file scope, so instead of converting them to CSS vars
+   (the shorter route) we override the compiled utilities under the dark selector.
+   A side benefit: `bg-ink/50` modal backdrops stay a dark scrim (they would turn
+   into a light haze if --ink flipped to light). `mark`/`markdim` are the amber
+   accent and deliberately keep their light values. Attribute-scoped selectors
+   (0,2,0)+ always beat Tailwind's single-class utilities regardless of order. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+:root[data-theme="dark"] body {
+  background: #15161c;
+  color: #e6e8ee;
+}
+:root[data-theme="dark"] :focus-visible {
+  outline-color: #e6e8ee;
+}
+
+:root[data-theme="dark"] .bg-surface {
+  background-color: #1e2029;
+}
+:root[data-theme="dark"] .bg-surface\/80 {
+  background-color: rgb(30 32 41 / 0.8);
+}
+:root[data-theme="dark"] .bg-paper {
+  background-color: #15161c;
+}
+:root[data-theme="dark"] .bg-paper\/70 {
+  background-color: rgb(21 22 28 / 0.7);
+}
+:root[data-theme="dark"] .bg-hairline {
+  background-color: #2e313c;
+}
+:root[data-theme="dark"] .bg-dangertint,
+:root[data-theme="dark"] .hover\:bg-dangertint:hover {
+  background-color: #3a211f;
+}
+:root[data-theme="dark"] .bg-successtint {
+  background-color: #1e2e26;
+}
+:root[data-theme="dark"] .bg-markdim\/40 {
+  background-color: rgb(74 62 28 / 0.5);
+}
+
+:root[data-theme="dark"] .text-ink,
+:root[data-theme="dark"] .hover\:text-ink:hover {
+  color: #e6e8ee;
+}
+:root[data-theme="dark"] .text-inksoft {
+  color: #a0a4b2;
+}
+:root[data-theme="dark"] .text-inksoft\/70 {
+  color: rgb(160 164 178 / 0.7);
+}
+:root[data-theme="dark"] .text-danger {
+  color: #e07268;
+}
+:root[data-theme="dark"] .text-success {
+  color: #5fb98c;
+}
+
+:root[data-theme="dark"] .border-hairline {
+  border-color: #2e313c;
+}
+:root[data-theme="dark"] .border-ink,
+:root[data-theme="dark"] .hover\:border-ink:hover {
+  border-color: #e6e8ee;
+}
+:root[data-theme="dark"] .border-danger,
+:root[data-theme="dark"] .hover\:border-danger:hover {
+  border-color: #e07268;
+}
+:root[data-theme="dark"] .border-danger\/40 {
+  border-color: rgb(224 114 104 / 0.4);
+}
+:root[data-theme="dark"] .border-success\/40 {
+  border-color: rgb(95 185 140 / 0.4);
+}
+:root[data-theme="dark"] .decoration-hairline {
+  text-decoration-color: #2e313c;
+}
+
+/* dark: keep ink text on the amber mark accent */
+:root[data-theme="dark"] .bg-mark.text-ink {
+  color: #20222e;
+}
+:root[data-theme="dark"] .mode-label[data-active="true"] .mark-swipe {
+  color: #20222e;
+}
+:root[data-theme="dark"] .mark-static {
+  color: #20222e;
+}
+
+/* Raw panel (highlight.js "github" light theme) readability in dark mode.
+   The github stylesheet paints markdown tokens for a light background, so on our
+   dark surface some go dark-on-dark (bold nearly black, bullets/table pipes
+   washed out). Re-map the tokens the markdown grammar actually emits (strong,
+   emphasis, section, bullet, symbol, code, quote, link, string, literal) to a
+   github-dark-ish palette. Scoped to .raw-pre so only the raw editor is touched.
+   Caret was also dark-on-dark; lighten it on the transparent textarea. */
+:root[data-theme="dark"] .raw-pre .hljs-strong,
+:root[data-theme="dark"] .raw-pre .hljs-emphasis {
+  color: #e6e8ee;
+}
+:root[data-theme="dark"] .raw-pre .hljs-section,
+:root[data-theme="dark"] .raw-pre .hljs-title {
+  color: #79b8ff;
+}
+:root[data-theme="dark"] .raw-pre .hljs-bullet,
+:root[data-theme="dark"] .raw-pre .hljs-symbol {
+  color: #f6c445;
+}
+:root[data-theme="dark"] .raw-pre .hljs-code {
+  color: #c9d1d9;
+}
+:root[data-theme="dark"] .raw-pre .hljs-quote,
+:root[data-theme="dark"] .raw-pre .hljs-comment {
+  color: #8b949e;
+}
+:root[data-theme="dark"] .raw-pre .hljs-link,
+:root[data-theme="dark"] .raw-pre .hljs-string,
+:root[data-theme="dark"] .raw-pre .hljs-literal,
+:root[data-theme="dark"] .raw-pre .hljs-attr {
+  color: #9ecbff;
+}
+:root[data-theme="dark"] .raw-ta {
+  caret-color: #e6e8ee;
+}
+
+/* BlockNote (@blocknote/mantine) dark palette — mirrors the light block above.
+   BlockNoteView also gets theme="dark" from WysiwygPanel (mantine base); these
+   --bn-colors-* re-harmonize it with our surfaces. 0.51: tokens live on
+   `.bn-root` now; this selector (0,3,0) also outranks BlockNote's own
+   `.bn-root[data-color-scheme="dark"]` defaults (0,2,0). */
+:root[data-theme="dark"] .bn-root {
+  --bn-colors-editor-text: #e6e8ee;
+  --bn-colors-editor-background: #1e2029;
+  --bn-colors-menu-text: #e6e8ee;
+  --bn-colors-menu-background: #22242e;
+  --bn-colors-tooltip-text: #e6e8ee;
+  --bn-colors-tooltip-background: #2a2d38;
+  --bn-colors-hovered-text: #e6e8ee;
+  --bn-colors-hovered-background: #2a2d38;
+  --bn-colors-selected-text: #20222e;
+  --bn-colors-selected-background: #f6c445;
+  --bn-colors-disabled-text: #6a6f7e;
+  --bn-colors-disabled-background: #22242e;
+  --bn-colors-border: #2e313c;
+  --bn-colors-side-menu: #6a6f7e;
+  --bn-colors-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Auto dark for the pre-JS / no-JS window: the inline theme script in layout.tsx
+   resolves prefers-color-scheme -> data-theme before paint, so this only covers
+   the flash-visible background if that script hasn't run. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+  }
+  :root:not([data-theme]) body {
+    background: #15161c;
+    color: #e6e8ee;
+  }
+}
+
+/* Always-on highlighter swipe (welcome modal emphasis, about hero). Default
+   (desktop): an absolute pseudo gives the hand-drawn −1.5° tilt and irregular
+   rounded corners. The phrase stays on one line here, so the pseudo renders
+   clean. */
+.mark-static {
+  position: relative;
+  z-index: 0;
+  padding: 0 3px;
+}
+.mark-static::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 20%;
+  bottom: 8%;
+  z-index: -1;
+  background: #f6c445;
+  border-radius: 4px 6px 5px 7px;
+  transform: rotate(-1.5deg);
+}
+
+/* Marker that "draws" itself in on page load (about hero). */
+@keyframes mark-draw {
+  from {
+    transform: rotate(-1.5deg) scaleX(0);
+  }
+  to {
+    transform: rotate(-1.5deg) scaleX(1);
+  }
+}
+.mark-draw::before {
+  transform-origin: left center;
+  animation: mark-draw 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+/* Below desktop the phrase wraps, and an absolute pseudo collapses to a vertical
+   sliver at the line break. Switch to a clipped background band that repeats per
+   line (box-decoration-break: clone). Tilt/irregular corners are dropped — the
+   tradeoff for correct wrapping on narrow screens. */
+@keyframes mark-draw-bg {
+  from {
+    background-size: 0 60%;
+  }
+  to {
+    background-size: 100% 60%;
+  }
+}
+@media (max-width: 1023px) {
+  .mark-static {
+    position: static;
+    border-radius: 3px;
+    background: linear-gradient(#f6c445, #f6c445) no-repeat;
+    background-size: 100% 60%;
+    background-position: 0 85%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .mark-static::before {
+    content: none;
+  }
+  .mark-draw::before {
+    animation: none;
+  }
+  .mark-draw {
+    animation: mark-draw-bg 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-draw,
+  .mark-draw::before {
+    animation: none;
+  }
+}
+
+/* About page: sticky header that reveals as you scroll down. CSS-only via a
+   scroll-driven animation; where unsupported it degrades to always-visible. */
+.about-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+@keyframes sticky-reveal {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@supports (animation-timeline: scroll()) {
+  .about-sticky {
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: sticky-reveal linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 140px 260px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-sticky {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Welcome modal entrance. */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.modal-in {
+  animation: modal-in 180ms ease-out;
+}
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.backdrop-in {
+  animation: backdrop-in 160ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-in,
+  .backdrop-in {
+    animation: none;
+  }
+}
+
+/* Bounce-in for action buttons that appear conditionally. */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.bounce-in {
+  animation: bounce-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bounce-in {
+    animation: none;
+  }
+}

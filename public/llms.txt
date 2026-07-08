@@ -1,0 +1,17 @@
+# Markdown 67
+
+> A free, client-side Markdown editor with synced visual (Notion-style) and raw panels. Everything runs in your browser — no account, no server, no upload.
+
+Markdown 67 lets you write Markdown without memorizing syntax: type in a visual editor or in raw Markdown, kept perfectly in sync, then export a ready-to-use `.md` file. Your document never leaves your device — drafts are saved locally in the browser for 72 hours. The editor is desktop-focused (needs a viewport of at least 1024px).
+
+## Pages
+- [Home / editor](https://markdown67.app/): The editor app.
+- [About](https://markdown67.app/about): What it is, how it works, features, and FAQ.
+
+## Key facts
+- Free, no account, no sign-up, no email.
+- 100% client-side: nothing is uploaded to a server; drafts stored in localStorage for 72 hours.
+- Two synced editors: a visual (WYSIWYG, BlockNote) panel and a raw Markdown panel — the Markdown is always the source of truth.
+- Export/download `.md`, copy to clipboard, upload and drag-drop `.md` files.
+- Supports GitHub Flavored Markdown (headings, lists, tables, code blocks, quotes, links, emphasis).
+- Built by Romano Battiti. Hosted on Vercel.

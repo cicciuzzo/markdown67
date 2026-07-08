@@ -1,0 +1,67 @@
+{
+  "name": "markdown67",
+  "version": "1.0.33",
+  "private": true,
+  "description": "A frictionless, Notion-like WYSIWYG markdown editor that stays in sync with raw markdown. 100% client-side, no backend.",
+  "keywords": [
+    "markdown",
+    "editor",
+    "wysiwyg",
+    "gfm",
+    "blocknote",
+    "nextjs",
+    "static-site",
+    "client-side"
+  ],
+  "homepage": "https://github.com/cicciuzzo/markdown67#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cicciuzzo/markdown67.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cicciuzzo/markdown67/issues"
+  },
+  "author": "Romano Battiti",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.9",
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.5.10": ">=8.5.10"
+    }
+  },
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 3067",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3067",
+    "lint": "next lint",
+    "test": "node src/lib/__checks__/checks.mjs && node src/hooks/__checks__/checks.mjs"
+  },
+  "dependencies": {
+    "@blocknote/core": "^0.51.4",
+    "@blocknote/mantine": "0.51.4",
+    "@blocknote/react": "^0.51.4",
+    "@mantine/core": "8.3.18",
+    "@mantine/hooks": "8.3.18",
+    "@tiptap/core": "3.27.3",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "highlight.js": "^11.11.0",
+    "marked": "^15.0.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.1.0",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0"
+  }
+}

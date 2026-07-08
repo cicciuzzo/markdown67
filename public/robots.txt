@@ -1,0 +1,39 @@
+# Markdown 67 — https://markdown67.app
+# Policy: allow AI *search/retrieval* crawlers (eligible for citations) and
+# normal search engines; opt out of AI *training* crawlers.
+
+# --- AI search / retrieval (allowed) ---
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# --- AI training (disallowed) ---
+User-agent: GPTBot
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: Applebot-Extended
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# --- Everyone else, incl. Googlebot / Bingbot (allowed) ---
+User-agent: *
+Allow: /
+
+Sitemap: https://markdown67.app/sitemap.xml

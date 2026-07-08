@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+*.log
+*:Zone.Identifier
+
+# Claude Code
+CLAUDE.md
+CLAUDE.local.md
+**/CLAUDE.md
+.claude/
+.claude.json
+.mcp.json
+.device.json
+agents/
