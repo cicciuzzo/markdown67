@@ -9,6 +9,9 @@ next-env.d.ts
 *.log
 *:Zone.Identifier
 
+# demo video source (heavy raw); the optimized public/md67-demo.mp4 is committed
+Markdown67_demo_hero.mp4
+
 # Claude Code
 CLAUDE.md
 CLAUDE.local.md

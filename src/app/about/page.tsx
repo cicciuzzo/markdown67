@@ -3,16 +3,17 @@ import Link from "next/link";
 import { ColumnsIcon, WifiOffIcon, DownloadIcon, MarkdownIcon } from "@/components/Icons";
 import ThemeToggle from "@/components/ThemeToggle";
 import Shrug from "@/components/Shrug";
+import VideoDemo from "@/components/VideoDemo";
 
 export const metadata: Metadata = {
-  title: "About — what it is, how it works, FAQ",
+  title: "About: what it is, how it works, FAQ",
   description:
     "Markdown67 is a free, client-side Markdown editor: a visual, Notion-style editor and a raw Markdown view kept in sync. No account, nothing leaves your browser. Learn how it works and read the FAQ.",
   alternates: { canonical: "/about" },
   openGraph: {
     type: "article",
     url: "https://markdown67.app/about",
-    title: "About Markdown67 — visual + raw Markdown editor",
+    title: "About Markdown67: visual + raw Markdown editor",
     description:
       "How Markdown67 works: visual + raw editors in sync, export ready-to-use .md, 100% client-side. Features and FAQ.",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
@@ -23,7 +24,7 @@ const FEATURES = [
   {
     icon: ColumnsIcon,
     title: "Visual + raw, in sync",
-    body: "Type in a Notion-style visual editor or edit raw Markdown. Switch sides anytime — the Markdown is always the source of truth.",
+    body: "Type in a Notion-style visual editor or edit raw Markdown. Switch sides anytime; the Markdown is always the source of truth.",
   },
   {
     icon: WifiOffIcon,
@@ -38,7 +39,7 @@ const FEATURES = [
   {
     icon: MarkdownIcon,
     title: "GitHub Flavored Markdown",
-    body: "Headings, lists, tables, code blocks, quotes, links and emphasis — the syntax you already expect.",
+    body: "Headings, lists, tables, code blocks, quotes, links and emphasis: the syntax you already expect.",
   },
 ];
 
@@ -61,7 +62,7 @@ const FAQ = [
   },
   {
     q: "Does it work on mobile?",
-    a: "Yes. On narrow screens the two panels collapse to one full-width editor at a time — switch between the visual and raw view with the selector on top. Editing is still most comfortable on a larger screen.",
+    a: "Yes. On narrow screens the two panels collapse to one full-width editor at a time; switch between the visual and raw view with the selector on top. Editing is still most comfortable on a larger screen.",
   },
 ];
 
@@ -141,11 +142,27 @@ export default function About() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-inksoft">
           Markdown67 is a free, client-side Markdown editor. Type in a visual, Notion-style editor
-          or in raw Markdown — the two stay in sync — then export a ready-to-use{" "}
+          or in raw Markdown, then export a ready-to-use{" "}
           <span className="font-mono text-ink">.md</span> file. No account, and nothing you type ever
           leaves your browser.
         </p>
       </header>
+
+      {/* demo */}
+      <section className="mb-16">
+        <div className="group relative overflow-hidden rounded-2xl border border-hairline bg-surface shadow-card ring-1 ring-black/10">
+          <VideoDemo />
+          <Link
+            href="/"
+            aria-label="Start writing"
+            className="absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none"
+          >
+            <span className="rounded-lg bg-mark px-5 py-2.5 text-sm font-medium text-ink shadow-sm">
+              Start writing
+            </span>
+          </Link>
+        </div>
+      </section>
 
       {/* features */}
       <section className="mb-16">
@@ -169,7 +186,7 @@ export default function About() {
         <p className="max-w-2xl text-base leading-relaxed text-inksoft">
           Two panels sit side by side: a visual editor on the left and the raw Markdown on the right.
           Edit either one and the other keeps up instantly. Between them sits a little{" "}
-          <span className="font-mono text-ink">¯\(ツ)/¯</span> — click it to switch which side you are
+          <span className="font-mono text-ink">¯\(ツ)/¯</span>. Click it to switch which side you are
           writing in. Your work autosaves to your browser for 72 hours, so a refresh never loses it.
         </p>
       </section>
