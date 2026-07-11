@@ -75,6 +75,28 @@ assert.equal(
   'trailing spaces inside a code fence must be preserved',
 );
 
+// --- CRLF normalization (mirror of the strip in markdown.ts markdownToBlocks) ---
+// BlockNote's remark parser mis-parses CRLF fences; every parse path normalizes first.
+const stripCr = (md) => md.replace(/\r\n?/g, '\n');
+assert.equal(stripCr('a\r\nb'), 'a\nb', 'CRLF -> LF');
+assert.equal(stripCr('a\rb'), 'a\nb', 'lone CR -> LF');
+assert.equal(stripCr('a\nb'), 'a\nb', 'LF left untouched');
+assert.equal(stripCr('```sql\r\nSELECT 1\r\n```'), '```sql\nSELECT 1\n```', 'CRLF code fence normalizes');
+
+// --- looksLikeUrl (mirror of the heuristic in WysiwygPanel.tsx, B4a) ---
+const looksLikeUrl = (s) => {
+  const t = s.trim();
+  if (!t || /\s/.test(t)) return false;
+  return /^[a-z][a-z0-9+.-]*:\/\//i.test(t) || /^[a-z0-9-]+(?:\.[a-z0-9-]+)+(?:\/\S*)?$/i.test(t);
+};
+assert.equal(looksLikeUrl('https://foo.com/bar'), true, 'https URL is a URL');
+assert.equal(looksLikeUrl('http://example.org'), true, 'http URL is a URL');
+assert.equal(looksLikeUrl('aaaaa.com'), true, 'bare domain is a URL');
+assert.equal(looksLikeUrl('sub.foo.co.uk/path'), true, 'sub-domain + path is a URL');
+assert.equal(looksLikeUrl('just words'), false, 'text with spaces is not a URL');
+assert.equal(looksLikeUrl('hello'), false, 'single word without a dot is not a URL');
+assert.equal(looksLikeUrl(''), false, 'empty is not a URL');
+
 // --- substitutions (mirror of src/lib/substitutions.ts) ---
 const ON_COMPLETE = {
   '>': [['<->', '↔'], ['->', '→']],

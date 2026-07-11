@@ -10,7 +10,10 @@ export async function blocksToMarkdown(editor: BlockNoteEditor): Promise<string>
 }
 
 export async function markdownToBlocks(editor: BlockNoteEditor, md: string) {
-  return editor.tryParseMarkdownToBlocks(md);
+  // BlockNote's remark parser doesn't handle CRLF: `\r\n` fences are left
+  // unrecognized (code blocks dumped as paragraphs). Normalize to LF at the one
+  // chokepoint every parse path flows through (upload, paste, draft, sample).
+  return editor.tryParseMarkdownToBlocks(md.replace(/\r\n?/g, '\n'));
 }
 
 // Canonicalize hard line breaks to the BACKSLASH form for reliable round-trips.
