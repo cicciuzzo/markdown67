@@ -187,6 +187,25 @@ body {
   --bn-border-radius: 8px;
 }
 
+/* ---- Editor links (B4) ----
+   Tailwind's Preflight strips link styling, so BlockNote links looked like plain
+   text. Give them the app's amber-marker signature: an amber underline on ink
+   text. Click doesn't navigate (links.onClick is suppressed) — the caret lands
+   in the link and the link toolbar's open button follows it — so we keep the
+   text caret, not a pointer, to avoid implying "click to open". */
+.bn-editor a[data-inline-content-type="link"] {
+  color: #20222e;
+  cursor: text;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #f6c445;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+.bn-editor a[data-inline-content-type="link"]:hover {
+  text-decoration-color: #e0a91f;
+}
+
 /* ---- Dark theme (E9) ----
    ponytail: the token colors live as hardcoded hex in tailwind.config.ts, which
    is outside this chunk's file scope, so instead of converting them to CSS vars
@@ -234,6 +253,9 @@ body {
 
 :root[data-theme="dark"] .text-ink,
 :root[data-theme="dark"] .hover\:text-ink:hover {
+  color: #e6e8ee;
+}
+:root[data-theme="dark"] .bn-editor a[data-inline-content-type="link"] {
   color: #e6e8ee;
 }
 :root[data-theme="dark"] .text-inksoft {

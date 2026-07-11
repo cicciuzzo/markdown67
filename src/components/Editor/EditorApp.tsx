@@ -12,6 +12,7 @@ import { SAMPLE_DOCUMENT } from '@/lib/sampleDocument';
 import { validateUploadFile } from '@/lib/validation';
 import { useMarkdownValidation } from '@/hooks/useMarkdownValidation';
 import { TypographicInputRules } from '@/lib/typographicInputRules';
+import { md67Schema } from '@/lib/blocknoteSchema';
 import { useDraftStorage } from '@/hooks/useDraftStorage';
 import { useEditorSync } from '@/hooks/useEditorSync';
 import WysiwygPanel from './WysiwygPanel';
@@ -138,6 +139,11 @@ export default function EditorApp() {
   // E1 (WYSIWYG side): typographic arrow substitutions mirroring the raw panel,
   // injected as ProseMirror input rules through BlockNote's TipTap escape hatch.
   const editor = useCreateBlockNote({
+    schema: md67Schema,
+    // B4: don't navigate when a link is clicked in the editor. Clicking places
+    // the caret and surfaces the link toolbar; its "open" button is the only way
+    // to follow the link. Returning without `false` marks the click as handled.
+    links: { onClick: () => {} },
     _tiptapOptions: { extensions: [TypographicInputRules] },
   });
   // ponytail: BlockNote's default-schema editor is invariant vs the base
