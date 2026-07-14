@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import PwaRegister from "@/components/PwaRegister";
 import DevArt from "@/components/DevArt";
@@ -107,6 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Script src="https://sapientone.app/widget.js" data-key="cd8db400-65ed-4842-bf5c-9f14c85d0d0c" strategy="afterInteractive" />
         <PwaRegister />
         <DevArt />
         <Analytics />
