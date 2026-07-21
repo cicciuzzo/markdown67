@@ -1,6 +1,6 @@
 {
   "name": "markdown67",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "private": true,
   "description": "A frictionless, Notion-like WYSIWYG markdown editor that stays in sync with raw markdown. 100% client-side, no backend.",
   "keywords": [
