@@ -362,6 +362,20 @@ export default function EditorApp() {
     [loadFile, notify],
   );
 
+  // OS "Open with" -> MarkDown67, for .md files declared in file_handlers
+  // (manifest.webmanifest). Only fires in an installed PWA on Chromium desktop;
+  // elsewhere launchQueue is undefined and this is a no-op. Files arrive as
+  // handles, but we only ever read — saving stays download-a-new-copy, so the
+  // handle is dropped straight after getFile().
+  // ponytail: reuses handleFile, so the overwrite-confirm and .md validation
+  // come for free. Multi-select opens only the first file.
+  useEffect(() => {
+    window.launchQueue?.setConsumer(async (params) => {
+      const handle = params.files[0];
+      if (handle) handleFile(await handle.getFile());
+    });
+  }, [handleFile]);
+
   const confirmUpload = () => {
     if (pendingFile) void loadFile(pendingFile);
     setPendingFile(null);
