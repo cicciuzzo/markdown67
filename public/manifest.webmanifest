@@ -5,6 +5,12 @@
   "display": "standalone",
   "background_color": "#E9EBF0",
   "theme_color": "#E9EBF0",
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": { "text/markdown": [".md", ".markdown"] }
+    }
+  ],
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },

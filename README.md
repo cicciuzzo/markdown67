@@ -38,6 +38,7 @@ file. No account, no upload, no backend. Everything runs in your browser.
 - **Native serialization**: conversion uses BlockNote's own `blocksToMarkdown` / `markdownToBlocks`, never hand-rolled parsing.
 - **Local drafts**: auto-saved to `localStorage` with a 72h TTL; expired drafts are cleaned automatically. Nothing leaves your machine.
 - **File I/O**: copy to clipboard, download a timestamped `MD67_YYYY-MM-DD_HH-MM-SS.md`, or upload/drag-drop an existing `.md` (validated by extension + GFM parse).
+- **Open `.md` files from the OS**: install Markdown67 as a PWA and it registers as a handler for `.md` / `.markdown`, so it shows up in "Open with" and can be set as the default app. Requires Chromium desktop (Chrome/Edge) over HTTPS; on Firefox, Safari and mobile nothing changes. Opened files are read only: saving still downloads a new `MD67_<timestamp>.md` copy, and if a document is already open you get the usual overwrite confirmation.
 - **Onboarding**: first-visit welcome modal, reopenable from the footer; plus a small "Why 67?" easter egg.
 - **Responsive**: side-by-side panels on desktop; below 1100px it collapses to a single-editor layout (one panel at a time, sync always on) that works on mobile and tablets.
 
