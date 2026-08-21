@@ -14,4 +14,4 @@ Markdown 67 lets you write Markdown without memorizing syntax: type in a visual 
 - Two synced editors: a visual (WYSIWYG, BlockNote) panel and a raw Markdown panel — the Markdown is always the source of truth.
 - Export/download `.md`, copy to clipboard, upload and drag-drop `.md` files.
 - Supports GitHub Flavored Markdown (headings, lists, tables, code blocks, quotes, links, emphasis).
-- Built by Romano Battiti. Hosted on Vercel.
+- Built by Romano Battiti (https://romanobattiti.com/). Hosted on Vercel.

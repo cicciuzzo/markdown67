@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     "client-side markdown editor",
     ".md editor",
   ],
-  authors: [{ name: "Romano Battiti", url: "https://www.linkedin.com/in/battiti/" }],
+  // Identity URL for search engines: bare, no campaign param — a query
+  // string here would make the author entity non-canonical.
+  authors: [{ name: "Romano Battiti", url: "https://romanobattiti.com/" }],
   creator: "Romano Battiti",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon-192.png", apple: "/apple-touch-icon.png" },
@@ -89,7 +91,7 @@ const jsonLd = {
     "Local autosave for 72 hours",
     "No account, fully client-side — nothing leaves the browser",
   ],
-  author: { "@type": "Person", name: "Romano Battiti", url: "https://www.linkedin.com/in/battiti/" },
+  author: { "@type": "Person", name: "Romano Battiti", url: "https://romanobattiti.com/" },
 };
 
 export default function RootLayout({

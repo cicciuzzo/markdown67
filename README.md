@@ -108,4 +108,4 @@ Issues and pull requests are welcome. To hack on it: fork, `pnpm install`,
 
 ## License
 
-[MIT](./LICENSE) © Romano Battiti
+[MIT](./LICENSE) © [Romano Battiti](https://romanobattiti.com/?from=markdown67)

@@ -12,7 +12,7 @@ const ART = `
 ██║ ╚═╝ ██║██████╔╝╚██████╔╝  ██║
 ╚═╝     ╚═╝╚═════╝  ╚═════╝   ╚═╝   ツ
 
-Markdown67 — made by Romano Battiti
+Markdown67 — made by Romano Battiti — https://romanobattiti.com/
 `;
 
 export default function DevArt() {
