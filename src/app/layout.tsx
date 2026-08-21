@@ -80,7 +80,7 @@ const jsonLd = {
   url: SITE,
   applicationCategory: "ProductivityApplication",
   operatingSystem: "Web browser",
-  browserRequirements: "Requires JavaScript. Desktop viewport (min 1024px) for the editor.",
+  browserRequirements: "Requires JavaScript. Works on any viewport: below 1100px the two panels collapse to one at a time.",
   description: DESCRIPTION,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   featureList: [
@@ -91,7 +91,12 @@ const jsonLd = {
     "Local autosave for 72 hours",
     "No account, fully client-side — nothing leaves the browser",
   ],
-  author: { "@type": "Person", name: "Romano Battiti", url: "https://romanobattiti.com/" },
+  author: {
+    "@type": "Person",
+    name: "Romano Battiti",
+    url: "https://romanobattiti.com/",
+    sameAs: ["https://romanobattiti.com/", "https://github.com/cicciuzzo"],
+  },
 };
 
 export default function RootLayout({
