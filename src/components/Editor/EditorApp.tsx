@@ -637,7 +637,7 @@ export default function EditorApp() {
         <p className="mt-1">
           Made with <Shrug /> by{' '}
           <a
-            href="https://www.linkedin.com/in/battiti/"
+            href="https://romanobattiti.com/?from=markdown67"
             target="_blank"
             rel="noreferrer noopener"
             className="link-mark font-medium"

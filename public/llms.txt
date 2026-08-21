@@ -2,7 +2,7 @@
 
 > A free, client-side Markdown editor with synced visual (Notion-style) and raw panels. Everything runs in your browser — no account, no server, no upload.
 
-Markdown 67 lets you write Markdown without memorizing syntax: type in a visual editor or in raw Markdown, kept perfectly in sync, then export a ready-to-use `.md` file. Your document never leaves your device — drafts are saved locally in the browser for 72 hours. The editor is desktop-focused (needs a viewport of at least 1024px).
+Markdown 67 lets you write Markdown without memorizing syntax: type in a visual editor or in raw Markdown, kept perfectly in sync, then export a ready-to-use `.md` file. Your document never leaves your device — drafts are saved locally in the browser for 72 hours. It works on any screen: below 1100px the two panels collapse to one at a time, switched from a selector on top.
 
 ## Pages
 - [Home / editor](https://markdown67.app/): The editor app.
@@ -14,4 +14,11 @@ Markdown 67 lets you write Markdown without memorizing syntax: type in a visual 
 - Two synced editors: a visual (WYSIWYG, BlockNote) panel and a raw Markdown panel — the Markdown is always the source of truth.
 - Export/download `.md`, copy to clipboard, upload and drag-drop `.md` files.
 - Supports GitHub Flavored Markdown (headings, lists, tables, code blocks, quotes, links, emphasis).
-- Built by Romano Battiti. Hosted on Vercel.
+- Built by Romano Battiti (https://romanobattiti.com/). Hosted on Vercel.
+
+## FAQ
+- **What is Markdown 67?** A free, browser-based Markdown editor with a visual (Notion-style) editor and a raw Markdown view kept in sync. Write however you prefer and export a ready-to-use `.md` file.
+- **Do I need an account?** No. There is no sign-up, no email and no login. Open the page and start writing.
+- **Is my data private?** Yes. Markdown 67 runs entirely in your browser. Nothing you type is uploaded or sent to a server, and drafts are saved locally on your device for 72 hours.
+- **Can I export or import my Markdown?** Yes. Download a ready-to-use `.md` file, copy the Markdown to your clipboard, or upload and drag-and-drop an existing `.md` file to keep editing it.
+- **Does it work on mobile?** Yes. On narrow screens the two panels collapse to one full-width editor at a time; switch between the visual and raw view with the selector on top. Editing is still most comfortable on a larger screen.

@@ -221,7 +221,7 @@ export default function About() {
       <footer className="text-center text-xs text-inksoft">
         Made with <Shrug /> by{" "}
         <a
-          href="https://www.linkedin.com/in/battiti/"
+          href="https://romanobattiti.com/?from=markdown67"
           target="_blank"
           rel="noreferrer noopener"
           className="font-medium underline decoration-hairline underline-offset-2 hover:text-ink"

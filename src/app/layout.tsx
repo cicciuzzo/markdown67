@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     "client-side markdown editor",
     ".md editor",
   ],
-  authors: [{ name: "Romano Battiti", url: "https://www.linkedin.com/in/battiti/" }],
+  // Identity URL for search engines: bare, no campaign param — a query
+  // string here would make the author entity non-canonical.
+  authors: [{ name: "Romano Battiti", url: "https://romanobattiti.com/" }],
   creator: "Romano Battiti",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon-192.png", apple: "/apple-touch-icon.png" },
@@ -78,7 +80,7 @@ const jsonLd = {
   url: SITE,
   applicationCategory: "ProductivityApplication",
   operatingSystem: "Web browser",
-  browserRequirements: "Requires JavaScript. Desktop viewport (min 1024px) for the editor.",
+  browserRequirements: "Requires JavaScript. Works on any viewport: below 1100px the two panels collapse to one at a time.",
   description: DESCRIPTION,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   featureList: [
@@ -89,7 +91,12 @@ const jsonLd = {
     "Local autosave for 72 hours",
     "No account, fully client-side — nothing leaves the browser",
   ],
-  author: { "@type": "Person", name: "Romano Battiti", url: "https://www.linkedin.com/in/battiti/" },
+  author: {
+    "@type": "Person",
+    name: "Romano Battiti",
+    url: "https://romanobattiti.com/",
+    sameAs: ["https://romanobattiti.com/", "https://github.com/cicciuzzo"],
+  },
 };
 
 export default function RootLayout({

@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/cicciuzzo/markdown67/issues"
   },
-  "author": "Romano Battiti",
+  "author": "Romano Battiti (https://romanobattiti.com/)",
   "license": "MIT",
   "packageManager": "pnpm@9.15.9",
   "pnpm": {

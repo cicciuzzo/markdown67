@@ -1,6 +1,10 @@
 # Markdown 67 — https://markdown67.app
-# Policy: allow AI *search/retrieval* crawlers (eligible for citations) and
-# normal search engines; opt out of AI *training* crawlers.
+# Policy: open to search, retrieval and mainstream AI training. Blocking a
+# training crawler here would only remove our own copy from the corpus — every
+# third-party page that mentions Markdown 67 gets crawled anyway — so the trade
+# was giving up the chance to describe the app in our own words for almost no
+# protection. Nothing here is private: it is a free client-side tool whose text
+# exists to be found.
 
 # --- AI search / retrieval (allowed) ---
 User-agent: OAI-SearchBot
@@ -14,19 +18,25 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-# --- AI training (disallowed) ---
+# --- AI training (allowed) ---
+# Google-Extended and Applebot-Extended are training-only tokens: they do not
+# affect Googlebot indexing or Applebot/Siri.
 User-agent: GPTBot
-Disallow: /
+Allow: /
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 User-agent: Applebot-Extended
-Disallow: /
+Allow: /
 User-agent: CCBot
-Disallow: /
+Allow: /
+
+# --- Still disallowed ---
+# Aggressive crawlers with no citation or referral back. Not a content policy,
+# a bandwidth one.
 User-agent: Bytespider
 Disallow: /
 User-agent: Meta-ExternalAgent
